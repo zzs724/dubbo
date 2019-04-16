@@ -1,4 +1,4 @@
-package com.zzs;
+package com.zzs.block;
 
 public enum  CountryEnum {
     ONE(1,"齐"),

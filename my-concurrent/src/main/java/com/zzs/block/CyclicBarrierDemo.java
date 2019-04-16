@@ -1,4 +1,4 @@
-package com.zzs;
+package com.zzs.block;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
