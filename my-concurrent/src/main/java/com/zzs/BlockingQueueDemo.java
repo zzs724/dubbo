@@ -6,15 +6,12 @@ import sun.security.provider.NativePRNG;
 import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * ArrayBlockingQueue：一个基于数组结构的有界阻塞队列，此队列安FIFO先进先出原则对原始排序
  * LinkedBlockingQueue：一个基于链表结构，此队列安FIFO先进先出原则对原始排序，吞吐量高于ArrayBlockingQueue
  * SynchronousQueue：不存储元素的阻塞队列，每个插入操作必须等到另一个线程调用移除操作，否则插入一直处于阻塞，
- *                  吞吐量高于LinkedBlockingQueue
  *
  * 阻塞队列：当队列为空时，获取队列元素时线程会被阻塞
  *            当队里满时，添加元素会被阻塞
@@ -29,12 +26,42 @@ public class BlockingQueueDemo
         //LinkedBlockingQueue：链表结构有界（大小默认Integer.MAX_VALUE 21亿类似于无界），太大了
         //SynchronousQueue：不存储元素的阻塞队列，每个插入操作必须等到另
         // 一个线程调用移除操作，否则插入一直处于阻塞。队列只有一个元素
+        BlockingQueue<String> blockingQueue = new SynchronousQueue<>();//同步队列
+        new Thread(()->{
+            try
+            {
+                System.out.println(Thread.currentThread().getName()+"\t put 1");
+                blockingQueue.put("1");
+                System.out.println(Thread.currentThread().getName()+"\t put 2");
+                blockingQueue.put("2");
+                System.out.println(Thread.currentThread().getName()+"\t put 3");
+                blockingQueue.put("3");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        },"AAA").start();
+
+        new Thread(()->{
+            try
+            {
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println(Thread.currentThread().getName()+"\t "+blockingQueue.take());
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println(Thread.currentThread().getName()+"\t "+blockingQueue.take());
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println(Thread.currentThread().getName()+"\t "+blockingQueue.take());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        },"BBB").start();
+
+    }
+
+    private static void timeout() throws InterruptedException {
         BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<String>(1);
 
         System.out.println(blockingQueue.offer("a", 2, TimeUnit.SECONDS));
 //        System.out.println(blockingQueue.offer("b", 2, TimeUnit.SECONDS));当队列满时，只会阻塞设定时间2秒，返回false
-
-
     }
 
     private static void block() throws InterruptedException {
