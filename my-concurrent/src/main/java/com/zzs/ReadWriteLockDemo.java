@@ -42,6 +42,7 @@ class MyCache {
 
     private ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
 
+    //写锁
     public void putLock(String key, Object value) {
         rwLock.writeLock().lock();
         try {
@@ -56,6 +57,7 @@ class MyCache {
         }
     }
 
+    //读锁
     public void getLock(String key) {
         rwLock.readLock().lock();
         try {
