@@ -57,7 +57,7 @@ class ShareResource {
             }
             //通知后续线程
             number = 2;
-            c2.signal();
+            c2.signal();//唤醒使用c2.await()的线程
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
