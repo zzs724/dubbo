@@ -1,4 +1,4 @@
-# MyConCurrentRepository
-并发
+# dubbo
+分布式
 ```
-1、读写锁验证
+
