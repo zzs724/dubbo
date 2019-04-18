@@ -14,13 +14,13 @@ public class MyCreateThreadPoolDemo {
                 TimeUnit.SECONDS,
                 new LinkedBlockingDeque<Runnable>(3),
                 Executors.defaultThreadFactory(),
-//                new ThreadPoolExecutor.AbortPolicy());//直接抛异常：RejectedExecutionException
+                new ThreadPoolExecutor.AbortPolicy());//直接抛异常：RejectedExecutionException
 //                new ThreadPoolExecutor.CallerRunsPolicy());//返回给发起任务的调用者，谁调用的线程就返给谁
 //                new ThreadPoolExecutor.DiscardOldestPolicy());//抛弃阻塞队列中等待最久的，尝试将当前任务加入队列再次提交任务
-                new ThreadPoolExecutor.DiscardPolicy());//直接将无法处理的任务丢弃
+//                new ThreadPoolExecutor.DiscardPolicy());//直接将无法处理的任务丢弃
 
         try {
-            for (int i = 1; i <= 15; i++)
+            for (int i = 1; i <= 9; i++)
             {
                 final int a = i;
                 threadPool.execute(() ->{
