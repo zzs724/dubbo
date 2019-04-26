@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     public List<UserAddress> hello(String userId) {
 
         List<UserAddress> addressList = new ArrayList<UserAddress>();
-        addressList.add(new UserAddress(1,"霍营","2","郑志帅","110","Y"));
+        addressList.add(new UserAddress(1,"霍营","2","root","110","Y"));
         return addressList;
 
     }
