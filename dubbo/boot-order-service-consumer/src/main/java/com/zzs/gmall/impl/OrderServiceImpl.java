@@ -19,7 +19,7 @@ import java.util.List;
  * <p>
  * 2、让服务消费者去注册中心订阅服务提供者的服务地址
  *
- * @author lfy
+ * @author zzs
  */
 @Service
 public class OrderServiceImpl implements OrderService {
