@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Reference//代替Autowired
+//    @Reference//代替Autowired
     UserService userService;
 
     @Override
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    @HystrixCommand(fallbackMethod = "hello")
+//    @HystrixCommand(fallbackMethod = "hello")
     public List<UserAddress> initOrder(String userId) {
         System.out.println("用户id：" + userId);
         //1、查询用户的收货地址
